@@ -1,55 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-import sqlite3
-import os
 
 app = Flask(__name__)
 app.secret_key = "lostandfound"
 
-DB_NAME = "database.db"
-
-# ---------- DATABASE INIT ----------
-def init_db():
-    conn = sqlite3.connect(DB_NAME)
-    cur = conn.cursor()
-
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT UNIQUE,
-        password TEXT
-    )
-    """)
-
-    # default user insert (only once)
-    cur.execute("SELECT * FROM users WHERE email=?", ("admin@gmail.com",))
-    if cur.fetchone() is None:
-        cur.execute(
-            "INSERT INTO users (email, password) VALUES (?, ?)",
-            ("admin@gmail.com", "admin123")
-        )
-
-    conn.commit()
-    conn.close()
-
-init_db()
-
-# ---------- ROUTES ----------
+# ---------- LOGIN ----------
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-        conn = sqlite3.connect(DB_NAME)
-        cur = conn.cursor()
-        cur.execute(
-            "SELECT * FROM users WHERE email=? AND password=?",
-            (email, password)
-        )
-        user = cur.fetchone()
-        conn.close()
-
-        if user:
+        # DEMO LOGIN (Render-safe)
+        if email == "admin@gmail.com" and password == "admin123":
             return redirect(url_for("dashboard"))
         else:
             flash("Invalid login details")
@@ -57,10 +19,14 @@ def login():
     return render_template("login.html")
 
 
+# ---------- DASHBOARD ----------
 @app.route("/dashboard")
 def dashboard():
-    return "<h1>Lost and Found Management - Dashboard</h1>"
+    return """
+    <h1>Lost and Found Management</h1>
+    <p>Login Successful</p>
+    """
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
