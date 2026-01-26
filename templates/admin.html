@@ -1,0 +1,9 @@
+<h2>Admin Panel</h2>
+
+{% for item in items %}
+  <div style="border:1px solid black; padding:10px; margin:10px;">
+    <h3>{{ item[1] }} ({{ item[3] }})</h3>
+    <p>{{ item[2] }}</p>
+    <img src="/static/uploads/{{ item[4] }}" width="200">
+  </div>
+{% endfor %}
