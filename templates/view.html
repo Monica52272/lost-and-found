@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h2>{{ title }}</h2>
+
+<table class="table">
+    <tr>
+        <th>Item Name</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Date</th>
+    </tr>
+
+    {% for i in items %}
+    <tr>
+        <td>{{ i[2] }}</td>
+        <td>{{ i[3] }}</td>
+        <td>{{ i[4] }}</td>
+        <td>{{ i[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<a href="/dashboard" class="card">Back to Dashboard</a>
+
+</body>
+</html>

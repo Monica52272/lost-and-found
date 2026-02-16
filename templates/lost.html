@@ -1,7 +1,9 @@
-<h1>Report Lost Item</h1>
-<form action="/submit_lost" method="POST">
-    Item Name: <input type="text" name="item_name"><br>
-    Description: <input type="text" name="description"><br>
-    <input type="submit" value="Submit">
+<h2>Report Lost Item</h2>
+<form method="post">
+    Item Name: <input name="name"><br><br>
+    Description: <input name="description"><br><br>
+    Location: <input name="location"><br><br>
+    Date: <input type="date" name="date"><br><br>
+    <button>Submit</button>
 </form>
-<a href="/">Back to Home</a>
+<a href="/dashboard">Back to Dashboard</a>

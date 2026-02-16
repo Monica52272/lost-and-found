@@ -1,18 +1,43 @@
 body {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
+    background: #f4f6f8;
+    text-align: center;
 }
 
-.container {
-    width: 400px;
-    margin: 100px auto;
-    padding: 20px;
+h1 {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, 220px);
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.card {
     background: white;
-    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+.card:hover {
+    background: #3498db;
+    color: white;
+}
+
+.logout {
+    background: #e74c3c;
+    color: white;
 }
