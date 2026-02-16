@@ -4,6 +4,25 @@ import sqlite3, os
 app = Flask(__name__)
 app.secret_key = "secret123"
 
+#-------------REGISTER------------
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        conn = sqlite3.connect("users.db")
+        cur = conn.cursor()
+        cur.execute("INSERT INTO users (email, password) VALUES (?,?)",
+                    (email, password))
+        conn.commit()
+        conn.close()
+
+        return redirect("/")
+
+    return render_template("register.html")
+
+
 # ---------- DATABASE ----------
 def get_db():
     return sqlite3.connect("users.db")
